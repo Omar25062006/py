@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dahmani Omar Farouk | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0a0d14',
+                            card: '#111625',
+                            border: '#1e293b',
+                            accent: '#3b82f6',
+                            neon: '#06b6d4',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0d14;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Futuristic Background Mesh Glow */
+        .bg-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.15), transparent 40%),
+                        radial-gradient(circle at 80% 60%, rgba(139, 92, 246, 0.1), transparent 40%),
+                        radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.12), transparent 40%);
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(17, 22, 37, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.25);
+        }
+
+        /* Neon Border Highlight */
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .glow-border:hover::after {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0d14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+
+        /* Typing cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-cyber-dark text-slate-100 min-h-screen relative antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Ambient Radial Glow Background -->
+    <div class="fixed inset-0 bg-glow pointer-events-none z-0"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-card !border-x-0 !border-t-0 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center font-mono font-bold text-lg text-white shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform">
+                    DF
+                </div>
+                <span class="font-bold text-lg tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                    DAHMANI <span class="text-blue-500">.FAROUK</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
+                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contact" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                    Get In Touch
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg text-xl" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-cyber-card/95 px-6 py-6 space-y-4">
+            <a href="#about" class="mobile-link block text-slate-300 hover:text-blue-400 font-medium py-2">About</a>
+            <a href="#skills" class="mobile-link block text-slate-300 hover:text-blue-400 font-medium py-2">Skills</a>
+            <a href="#projects" class="mobile-link block text-slate-300 hover:text-blue-400 font-medium py-2">Projects</a>
+            <a href="#contact" class="mobile-link block text-slate-300 hover:text-blue-400 font-medium py-2">Contact</a>
+            <a href="#contact" class="mobile-link block text-center py-3 rounded-xl bg-blue-600 text-white font-medium text-sm">Get In Touch</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="min-h-[88vh] flex items-center justify-between py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+                
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-xs font-mono text-cyan-400 w-fit border border-cyan-500/30">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    Available for Remote AI & Full-Stack Projects
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                    Hi, I'm <br>
+                    <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        Dahmani Omar Farouk
+                    </span>
+                </h1>
+
+                <!-- Dynamic Typing Subtitle -->
+                <div class="text-xl sm:text-2xl font-mono text-slate-300 h-12 flex items-center">
+                    <span class="text-blue-400 mr-2">&gt;</span>
+                    <span id="typing-text" class="text-slate-200 font-semibold"></span>
+                    <span class="typing-cursor text-blue-500"></span>
+                </div>
+
+                <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                    Computer Science Student at <span class="text-slate-200 font-medium">Abou Bekr Belkaid University</span>. Combining fundamental software engineering, low-level efficiency, full-stack web development, and AI model evaluation.
+                </p>
+
+                <!-- Hero Call To Action Buttons -->
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] transition-all flex items-center gap-2">
+                        <span>Explore Works</span>
+                        <i class="fa-solid fa-arrow-down text-sm"></i>
+                    </a>
+                    <a href="#contact" class="px-6 py-3.5 rounded-xl glass-card text-slate-200 font-semibold hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-2 border border-slate-700">
+                        <i class="fa-regular fa-envelope text-blue-400"></i>
+                        <span>Contact Me</span>
+                    </a>
+                </div>
+
+                <!-- Social Links Quick Bar -->
+                <div class="flex items-center gap-6 pt-6 text-slate-400">
+                    <a href="https://github.com" target="_blank" class="hover:text-white transition-colors text-xl" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400 transition-colors text-xl" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:farouk.dahmani@example.com" class="hover:text-cyan-400 transition-colors text-xl" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Hero Interactive Terminal Visual -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="w-full max-w-md glass-card rounded-2xl overflow-hidden shadow-2xl border border-slate-800 font-mono text-sm">
+                    <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        </div>
+                        <span class="text-xs text-slate-500">profile.json</span>
+                    </div>
+                    <div class="p-6 space-y-3 text-slate-300 leading-relaxed overflow-x-auto">
+                        <div><span class="text-purple-400">const</span> <span class="text-blue-400">developer</span> = {</div>
+                        <div class="pl-4"><span class="text-cyan-400">name</span>: <span class="text-emerald-400">"Dahmani Omar Farouk"</span>,</div>
+                        <div class="pl-4"><span class="text-cyan-400">location</span>: <span class="text-emerald-400">"Tlemcen, Algeria"</span>,</div>
+                        <div class="pl-4"><span class="text-cyan-400">degree</span>: <span class="text-emerald-400">"State Engineer in CS"</span>,</div>
+                        <div class="pl-4"><span class="text-cyan-400">focus</span>: [</div>
+                        <div class="pl-8 text-emerald-300">"Web Development",</div>
+                        <div class="pl-8 text-emerald-300">"Algorithms & Systems",</div>
+                        <div class="pl-8 text-emerald-300">"AI Data & RLHF"</div>
+                        <div class="pl-4">],</div>
+                        <div class="pl-4"><span class="text-cyan-400">status</span>: <span class="text-yellow-400">"Ready for Challenges"</span></div>
+                        <div>};</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT ME SECTION -->
+        <section id="about" class="py-20 border-t border-slate-800/80">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">01. About Me</h2>
+                <h3 class="text-3xl font-bold text-white">Engineering Mindset &amp; Passion for Tech</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">CS Background</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Pursuing a State Engineer degree in Computer Science at University of Tlemcen. Deeply trained in data structures, computer architecture, and clean OOP practices.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Web Development</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Passionate about crafting fast, reactive, and responsive full-stack applications. Skilled in HTML, CSS, JavaScript, React, and modern CSS frameworks like Tailwind.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">AI &amp; Data Training</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Experienced in evaluating Large Language Models (LLMs), writing benchmark prompts, RLHF feedback, and verifying technical correctness across code outputs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. INTERACTIVE SKILLS MATRIX -->
+        <section id="skills" class="py-20 border-t border-slate-800/80">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-2">02. Tech Stack</h2>
+                <h3 class="text-3xl font-bold text-white">Skills Matrix &amp; Expertise</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Category 1: Web Dev -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fa-solid fa-code text-blue-400 text-xl"></i>
+                        <h4 class="font-bold text-lg text-white">Web Development</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">HTML5 / CSS3 / JavaScript</span>
+                                <span class="text-blue-400">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">React.js &amp; Tailwind CSS</span>
+                                <span class="text-blue-400">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">Node.js &amp; REST APIs</span>
+                                <span class="text-blue-400">75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Systems & CS -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fa-solid fa-terminal text-cyan-400 text-xl"></i>
+                        <h4 class="font-bold text-lg text-white">Systems &amp; CS Core</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">C &amp; Java Programming</span>
+                                <span class="text-cyan-400">75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-400 rounded-full" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">Python &amp; Logic Analysis</span>
+                                <span class="text-cyan-400">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-400 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">Linux / Bash &amp; MIPS Assembly</span>
+                                <span class="text-cyan-400">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-400 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: AI & Logic -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fa-solid fa-robot text-purple-400 text-xl"></i>
+                        <h4 class="font-bold text-lg text-white">AI Evaluation &amp; Logic</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">RLHF Response Ranking</span>
+                                <span class="text-purple-400">60%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">Prompt Engineering &amp; Testing</span>
+                                <span class="text-purple-400">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-slate-300">Code Verification &amp; Debugging</span>
+                                <span class="text-purple-400">95%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SHOWCASE WITH FILTERING -->
+        <section id="projects" class="py-20 border-t border-slate-800/80">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-purple-400 mb-2">03. Portfolio</h2>
+                <h3 class="text-3xl font-bold text-white">Featured Projects</h3>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center items-center gap-3 mb-12 flex-wrap">
+                <button class="filter-btn active px-5 py-2 rounded-xl text-sm font-medium border border-blue-500 bg-blue-500/20 text-blue-400 transition-all" data-filter="all">All Projects</button>
+                <button class="filter-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all" data-filter="web">Web Dev</button>
+                <button class="filter-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all" data-filter="ai">AI &amp; Logic</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col" data-category="web">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-3">
+                                <span class="text-blue-400">Web App</span>
+                                <span>2024</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">Interactive Dashboard</h4>
+                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                                Responsive analytical dashboard built with JavaScript and modern CSS styling with real-time dynamic data widgets.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">HTML/CSS</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">JavaScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Tailwind</span>
+                            </div>
+                            <a href="#" class="text-sm font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-2">
+                                View Project <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col" data-category="ai">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-3">
+                                <span class="text-purple-400">AI Evaluation</span>
+                                <span>2024</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">LLM Benchmark Suite</h4>
+                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                                Structured prompt collection and RLHF evaluation pipeline designed for scoring Python and C code accuracy.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Python</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Prompt Engineering</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">RLHF</span>
+                            </div>
+                            <a href="#" class="text-sm font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-2">
+                                Read Details <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col" data-category="web">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-3">
+                                <span class="text-cyan-400">Web App</span>
+                                <span>2024</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">Personal Developer Portfolio</h4>
+                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                                Cyberpunk-inspired, fully responsive web developer portfolio featuring glassmorphism and smooth UI components.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">React</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Tailwind</span>
+                            </div>
+                            <a href="#" class="text-sm font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-2">
+                                Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. CONTACT SECTION -->
+        <section id="contact" class="py-20 border-t border-slate-800/80 mb-12">
+            <div class="max-w-4xl mx-auto glass-card p-8 sm:p-12 rounded-3xl relative">
+                
+                <div class="text-center mb-10">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">04. Get In Touch</h2>
+                    <h3 class="text-3xl font-bold text-white">Let's Connect &amp; Collaborate</h3>
+                    <p class="text-slate-400 text-sm mt-2">Open for freelance projects, AI data tasks, or full-time opportunities.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    
+                    <!-- Direct Contact Details -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block font-mono">Email</span>
+                                <a href="mailto:kinom554@gmail.com" class="text-white font-medium hover:text-blue-400 transition-colors">
+                                    kinom554@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block font-mono">Location</span>
+                                <span class="text-white font-medium">Tlemcen / Oran, Algeria</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block font-mono">LinkedIn</span>
+                                <a href="https://linkedin.com/in/dahmani-omar-farouk" target="_blank" class="text-white font-medium hover:text-purple-400 transition-colors">
+                                    Dahmani Omar Farouk
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <input type="text" required placeholder="Your Name" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-all">
+                        </div>
+                        <div>
+                            <input type="email" required placeholder="Your Email" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-all">
+                        </div>
+                        <div>
+                            <textarea rows="4" required placeholder="Your Message..." class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-600/30">
+                            Send Message
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500 font-mono">
+        <p>&copy; 2026 Dahmani Omar Farouk. Designed &amp; Developed with Care.</p>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // 1. Dynamic Typing Effect
+        const phrases = [
+            "Informatics Engineering Student",
+            "Full-Stack & Web Developer",
+            "AI Data & RLHF Evaluator"
+        ];
+        let phraseIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        const typingEl = document.getElementById('typing-text');
+
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIdx];
+            
+            if (isDeleting) {
+                typingEl.textContent = currentPhrase.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typingEl.textContent = currentPhrase.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIdx === currentPhrase.length) {
+                typeSpeed = 2000; // Pause at full text
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', typeLoop);
+
+        // 2. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Projects Category Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'border-blue-500', 'bg-blue-500/20', 'text-blue-400');
+                    b.classList.add('border-slate-800', 'text-slate-400');
+                });
+
+                btn.classList.add('active', 'border-blue-500', 'bg-blue-500/20', 'text-blue-400');
+                btn.classList.remove('border-slate-800', 'text-slate-400');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 4. Contact Form Mock Submit
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for reaching out, Farouk! Your message has been sent successfully.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
